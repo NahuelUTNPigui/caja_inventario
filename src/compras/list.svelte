@@ -10,7 +10,7 @@
     let monto = ""
     let open = false
     const toggle = ()=>{open = !open}
-    function nuevo_cliente(){
+    function nuevo_compra(){
         navigate('/detallecompra')
     }
     async function eliminarCompra(){
@@ -39,13 +39,20 @@
         <Col>
             <Container>
                 <Row>
-                    <Col><Button on:click={nuevo_cliente}>Nuevo cliente</Button></Col>
+                    <Col><Button on:click={nuevo_compra}>Nuevo compra</Button></Col>
                     <Col name="nombre">Proveedor</Col>
                     <Col><Input
                         type="text"
                         name="nombre"
                         id="nombre"
                         bind:value="{proveedor}"
+                    /></Col>
+                    <Col name="fecha">fecha</Col>
+                    <Col><Input
+                        type="text"
+                        name="fecha"
+                        id="fecha"
+                        bind:value="{fecha}"
                     /></Col>
                     <Col><Button>Buscar</Button></Col>
 

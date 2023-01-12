@@ -1,6 +1,6 @@
 <script>    
     import { navigate } from 'svelte-routing';
-    import {Container,Row,Col,Form,Input,Label,Button} from 'sveltestrap'
+    import {Container,Row,Col,Form,Input,Label,Button,Table} from 'sveltestrap'
     import {ruta} from '../store'
     export let codCompra="0"
     let codProveedor=""
@@ -14,11 +14,11 @@
     ruta.subscribe(v=>RUTA = v)
     async function exito(e){
         e.preventDefault()
-        navigate('/clientes')
+        navigate('/compras')
     }
     function cancelar(e){
         e.preventDefault()
-        navigate('/clientes')
+        navigate('/compras')
     }
     let detalles_compras=[
         {nombre_producto:'papel',cantidad:5,precio:1.0}
@@ -27,7 +27,7 @@
 <Container>
     <Row>
         <Col>
-            <h2>C</h2>
+            <h2>Compras</h2>
             {#if codCompra == "0"}
                 <p>Nueva compra</p>
             {:else}
@@ -101,11 +101,49 @@
                               bind:value="{precio_compra}"
                             />
                         </Col>
+                        <Col>
+                            <br>
+                            <Button>Agregar o modifcar</Button>
+                        </Col>
                     </Row>
                     <Row>
-                        <Col></Col>
+                        <Col>
+                            <Table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Cantidad</th>
+                                        <th>Precio</th>
+                                        <th>Acciones</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {#each detalles_compras as dc}
+                                        <tr>
+                                            <td>{dc.nombre_producto}</td>
+                                            <td>{dc.cantidad}</td>
+                                            <td>{dc.precios}</td>
+                                            <td><Button>Modificar</Button></td>
+                                            <td><Button>Eliminar</Button></td>
+                                        </tr>
+                                    {/each}
+                                    <tr></tr>
+                                </tbody>
+                            </Table>
+                        </Col>
                     </Row>
-
+                    <Row>
+                            
+                        <Col>
+                            <br>
+                            <Button outline color="success" on:click={exito}>Guardar</Button>
+                        </Col>
+                        <Col>
+                            <br>
+                            <Button outline color="danger" on:click={cancelar}>cancelar</Button>
+                        </Col>
+                    </Row>
                 </Container>
             </Form>
         </Col>
