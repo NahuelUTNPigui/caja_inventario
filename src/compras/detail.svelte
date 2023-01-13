@@ -10,6 +10,7 @@
     let nombreProducto='papel'
     let cantidad="5"
     let precio_compra="1.5"
+    let descripcion="soy una descripcion"
     let RUTA = ''
     ruta.subscribe(v=>RUTA = v)
     async function exito(e){
@@ -131,6 +132,18 @@
                                     <tr></tr>
                                 </tbody>
                             </Table>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Label for="descripcion">Descripcion</Label>
+                            <Input
+                              type="text"
+                              name="descripcion"
+                              id="descripcion"
+                              placeholder="descripcion"
+                              bind:value="{descripcion}"
+                            />
                         </Col>
                     </Row>
                     <Row>
